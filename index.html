@@ -12,14 +12,15 @@
   <button onclick="alert('Maintenance request sent!')">Request Maintenance</button>
   
   <script>
-    // For now, just load the data locally
-    fetch('machine_data.json')
+    // Fetch data from your API Gateway endpoint instead of local JSON
+    fetch('https://bj3luoyfbg.execute-api.us-east-1.amazonaws.com/machine')
       .then(response => response.json())
       .then(data => {
         document.getElementById('machineStatus').textContent = data.machine_status;
         document.getElementById('slushLevel').textContent = data.slush_level;
         document.getElementById('cupsSold').textContent = data.cups_sold_today;
-      });
+      })
+      .catch(error => console.error('Error fetching data:', error));
   </script>
 </body>
 </html>
