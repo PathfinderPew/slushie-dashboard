@@ -1,0 +1,4 @@
+This solution leverages AWS Lambda, API Gateway, and CloudWatch for scalability and resilience:
+1. AWS Lambda automatically scales based on incoming requests.
+2. API Gateway handles thousands of requests per second without manual scaling.
+3. Stateless design ensures there’s no single point of failure.
