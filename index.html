@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Slushie Machine Dashboard</title>
+</head>
+<body>
+  <h1>Slushie Machine Dashboard</h1>
+  <p>Machine Status: <span id="machineStatus"></span></p>
+  <p>Slush Level: <span id="slushLevel"></span></p>
+  <p>Cups Sold Today: <span id="cupsSold"></span></p>
+  <button onclick="alert('Maintenance request sent!')">Request Maintenance</button>
+  
+  <script>
+    // For now, just load the data locally
+    fetch('machine_data.json')
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById('machineStatus').textContent = data.machine_status;
+        document.getElementById('slushLevel').textContent = data.slush_level;
+        document.getElementById('cupsSold').textContent = data.cups_sold_today;
+      });
+  </script>
+</body>
+</html>
