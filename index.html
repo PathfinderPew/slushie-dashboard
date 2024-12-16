@@ -10,7 +10,7 @@
   <p>Slush Level: <span id="slushLevel"></span></p>
   <p>Cups Sold Today: <span id="cupsSold"></span></p>
   <p>Warning: <span id="warning"></span></p>
-  <button onclick="alert('Maintenance request sent!')">Request Maintenance</button>
+  <button id="maintenanceButton">Request Maintenance</button>
   
   <script>
     // Fetch data from your API Gateway endpoint
@@ -29,6 +29,25 @@
         console.error('Error fetching data:', error);
         document.getElementById('warning').textContent = "Error fetching data!";
       });
+
+    // Add event listener to the maintenance button
+    document.getElementById("maintenanceButton").addEventListener("click", () => {
+      fetch("https://bj3luoyfbg.execute-api.us-east-1.amazonaws.com/maintenance", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ machineId: "12345", timestamp: new Date().toISOString() }),
+      })
+        .then(response => response.json())
+        .then(data => {
+          alert(data.message); // Display success message
+        })
+        .catch(error => {
+          console.error("Error logging maintenance request:", error);
+          alert("Failed to log maintenance request. Please try again.");
+        });
+    });
   </script>
 </body>
 </html>
